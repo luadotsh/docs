@@ -1,0 +1,89 @@
+export const metadata = {
+  title: 'Pagination',
+  description:
+    'This guide explains how to work with paginated responses when querying the Mercantive API pagination.',
+}
+
+# Pagination
+How to work with paginated responses when querying the Mercantive API. By default, responses are paginated with 25 results per page.
+
+## Making Paginated Requests
+To fetch different pages of results, you can append the `page` parameter to your API requests. For example, to retrieve the second page of users:
+
+## Response Structure
+<Row>
+  <Col>
+    <Properties>
+      <Property name="data" type="array">
+        An array of objects representing the items on the current page. Each object contains customer information such as id, name, and email.
+      </Property>
+      <Property name="links" type="object">
+        Contains URLs for navigating between pages, including first, last, previous, and next page links.
+      </Property>
+      <Property name="meta" type="object">
+        Provides metadata about the pagination, including current page, total pages, items per page, and total item count.
+      </Property>
+    </Properties>
+    The `meta` object tells us we're on page 1 of 4, with 25 items per page and a total of 100 items.
+  </Col>
+  <Col>
+
+    ```bash {{ title: 'Request' }}
+    curl -X https://lua.sh/api/v1/customers \
+      -H "Authorization: Bearer {token}" \
+      -H "Content-Type: application/json" \
+      -H "Accept: application/json" \
+      -d page=2
+    ```
+
+    ```json {{ title: 'Response' }}
+    {
+      "data": [
+          {
+              "id": "9d1a6ef4-05b2-420c-8237-ba4f99cb206c",
+              "name": "Elon Musk",
+              "email": "elon@tesla.com"
+          },
+          {
+              "id": "8d1a6ef1-05b3-420c-1233-ca4f99cb2064",
+              "name": "Steve Jobs",
+              "email": "steve@apple.com"
+          }
+      ],
+      "links": {
+        "first": "https://lua.sh/api/v1/customers?page=1",
+        "last": "https://lua.sh/api/v1/customers?page=1",
+        "prev": null,
+        "next": null
+      },
+      "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "links": [
+          {
+            "url": null,
+            "label": "Previous",
+            "active": false
+          },
+          {
+            "url": "https://lua.sh/api/v1/customers?page=1",
+            "label": "1",
+            "active": true
+          },
+          {
+            "url": null,
+            "label": "Next",
+            "active": false
+          }
+        ],
+        "path": "https://lua.sh/api/v1/customers",
+        "per_page": 25,
+        "to": 3,
+        "total": 3
+      }
+  }
+    ```
+
+  </Col>
+</Row>

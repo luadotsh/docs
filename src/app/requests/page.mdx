@@ -1,0 +1,15 @@
+export const metadata = {
+  title: 'Licenses',
+  description:
+    'On this page, we’ll dive into the different contact endpoints you can use to manage contacts programmatically.',
+}
+
+# Making Requests
+
+All API requests must be made over HTTPS to `https://lua.sh/api/v1`. Calls made over plain HTTP will fail. API requests without authentication will also fail.
+
+The Mercantive API uses JSON for request and response bodies. The following headers must be included with all requests to the API:
+
+* `Authorization: Bearer YOUR_API_KEY`
+* `Content-Type: application/json`
+* `Accept: application/json`

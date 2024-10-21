@@ -1,0 +1,54 @@
+export const metadata = {
+  title: 'Errors',
+  description:
+    'This guide explains how the Mercantive API handles errors and what you can expect when things go wrong.',
+}
+
+# Errors
+
+This guide explains how the Mercantive API handles errors and what you can expect when things go wrong. While we strive for perfection, errors can occur. Let's explore the status codes and error types you might encounter. {{ className: 'lead' }}
+
+You can determine if your request was successful by checking the status code in the API response. If a response is unsuccessful, you can use the error type and error message to understand what went wrong and perform some basic troubleshooting.
+
+<Note>
+  Before contacting support about an error, please be aware that most reported
+  errors are due to incorrect usage. We recommend thoroughly reviewing your code
+  and our documentation before reaching out to Mercantive support.
+</Note>
+
+---
+
+## Status codes
+
+Here's an overview of the status code categories returned by the Mercantive API. Use these to understand the outcome of your request.
+
+<Properties>
+  <Property name="2xx">
+    A 2xx status code indicates a successful response.
+  </Property>
+  <Property name="400 Bad Request">
+    This error suggests that the request you sent to the server is invalid or cannot be served. It could be due to a missing required parameter, invalid data format, or other client-side issues. Double-check your request payload and parameters.
+  </Property>
+  <Property name="401 Unauthorized">
+    This error occurs when your request lacks valid authentication credentials. Ensure you're including your API key correctly in the request headers. If you're sure the key is correct, check if your user account has the necessary permissions for the requested resource.
+  </Property>
+  <Property name="403 Forbidden">
+    While similar to 401, this error indicates that the server understood the request but refuses to authorize it. This could happen if you're trying to access a resource that exists but is not available to your account level or if the resource is hidden for other reasons.
+  </Property>
+  <Property name="404 Not Found">
+    This error means the requested resource doesn't exist on the server. Check if you've typed the correct URL and that the resource ID (if applicable) is valid. Remember that a resource might have existed previously but could have been moved or deleted.
+  </Property>
+  <Property name="405 Method Not Allowed">
+    This error occurs when you're using an HTTP method that's not allowed for the requested resource. For example, trying to DELETE a resource that only allows GET and POST. Verify the allowed methods for each endpoint in our API documentation.
+  </Property>
+  <Property name="422 Unprocessable Entity">
+    This error suggests that while the request was well-formed, the server couldn't process it due to semantic errors. This could happen if you're trying to create or update a resource with invalid field values. Check the error message for specifics on which fields need correction.
+  </Property>
+  <Property name="429 Too Many Requests">
+    This error indicates that you've exceeded the rate limit for API requests. Our API enforces rate limiting to ensure fair usage and system stability. If you receive this error, you'll need to wait before making further requests. Consider implementing exponential backoff in your code to handle these situations gracefully.
+  </Property>
+  <Property name="5xx">
+    A 5xx status code indicates a server error — these should be rare and temporary.
+  </Property>
+  When encountering these errors, always check the response body for additional details. We provide specific error messages and, where applicable, links to relevant documentation to help you troubleshoot and resolve the issue quickly.
+</Properties>

@@ -1,0 +1,176 @@
+export const metadata = {
+  title: 'Groups',
+  description:
+    'On this page, we’ll dive into the different group endpoints you can use to manage groups programmatically.',
+}
+
+# Discounts
+
+Discounts are a powerful tool in Mercantive to attract customers and boost sales — they allow you to offer special pricing on your products. On this page, we'll dive into the different discount endpoints you can use to manage discounts programmatically. We'll look at how to query, create, update, and delete discounts. {{ className: 'lead' }}
+
+## The discount model
+
+The discount model contains all the information about your discounts, including the discount code, amount, type, duration, and which products it applies to. It also includes details about when the discount is valid and how many times it can be used.
+
+### Properties
+
+<Properties>
+  <Property name="id" type="uuid">
+    Unique identifier for the discount.
+  </Property>
+  <Property name="store_id" type="uuid">
+    Unique identifier for the store this discount belongs to.
+  </Property>
+  <Property name="name" type="string">
+    The name of the discount.
+  </Property>
+  <Property name="code" type="string">
+    The code customers use to apply this discount.
+  </Property>
+  <Property name="published" type="boolean">
+    Indicates whether the discount is published or not.
+  </Property>
+  <Property name="type" type="string">
+    The type of discount: PERCENTAGE or FIXED.
+  </Property>
+  <Property name="amount" type="number">
+    The amount of the discount.
+  </Property>
+  <Property name="starts_at" type="string | null">
+    The start date and time of the discount's validity period.
+  </Property>
+  <Property name="ends_at" type="string | null">
+    The end date and time of the discount's validity period.
+  </Property>
+  <Property name="max_redemptions" type="number | null">
+    The maximum number of times this discount can be redeemed.
+  </Property>
+  <Property name="duration" type="string">
+    The duration type of the discount: ONCE, REPEATING, or FOREVER.
+  </Property>
+  <Property name="duration_in_months" type="number | null">
+    The number of months the discount is valid for, if the duration is REPEATING.
+  </Property>
+  <Property name="total_formatted" type="string">
+    A formatted string representation of the discount amount.
+  </Property>
+  <Property name="status" type="string">
+    The current status of the discount.
+  </Property>
+  <Property name="products" type="array">
+    An array of product objects this discount applies to.
+  </Property>
+  <Property name="created_at" type="string">
+    Timestamp of when the discount was created.
+  </Property>
+  <Property name="updated_at" type="string">
+    Timestamp of when the discount was last updated.
+  </Property>
+</Properties>
+
+---
+
+## List all discounts {{ tag: 'GET', label: '/discounts' }}
+
+<Row>
+  <Col>
+
+    This endpoint allows you to retrieve a paginated list of all your discounts.
+
+    ### Optional attributes
+    <Properties>
+      <Property name="page" type="integer">
+        The page number to retrieve.
+      </Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="GET" label="/discounts">
+
+    ```bash {{ title: 'cURL' }}
+    curl -X GET https://lua.sh/api/v1/discounts \
+      -H "Content-Type: application/json" \
+      -H "Accept: application/json" \
+      -H "Authorization: Bearer {token}"
+    ```
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+      "data": [
+        {
+          "id": "9d1c7704-c3a2-471e-b384-6728e310df95",
+          "store_id": "9d1c7340-edfd-4d51-a4e1-381da586408a",
+          "name": "BLACK FRIDAY",
+          "code": "BLACKFRIDAY",
+          "published": false,
+          "type": "PERCENTAGE",
+          "amount": 50,
+          "starts_at": null,
+          "ends_at": null,
+          "max_redemptions": null,
+          "duration": "ONCE",
+          "duration_in_months": null,
+          "total_formatted": "50%",
+          "status": "Active",
+          "products": [
+            {
+              "id": "9d1c7390-1eb7-4dd7-a433-442c9ecf9224",
+              "store_id": "9d1c7340-edfd-4d51-a4e1-381da586408a",
+              "name": "eBook",
+              "description": "A great book.",
+              "slug": "zwAToRm",
+              "published": true,
+              "display_on_storefront": true,
+              "type": "EBOOK",
+              "email_receipt_button_text": null,
+              "email_receipt_button_link": null,
+              "email_receipt_message": null,
+              "archived": false,
+              "created_at": "2024-09-27T16:40:34.000000Z",
+              "updated_at": "2024-09-27T16:41:16.000000Z"
+            }
+          ],
+          "created_at": "2024-09-27T16:50:14.000000Z",
+          "updated_at": "2024-09-27T16:50:19.000000Z"
+        }
+      ],
+      "links": {
+        "first": "https://lua.sh/api/v1/discounts?page=1",
+        "last": "https://lua.sh/api/v1/discounts?page=1",
+        "prev": null,
+        "next": null
+      },
+      "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "links": [
+          {
+            "url": null,
+            "label": "Previous",
+            "active": false
+          },
+          {
+            "url": "https://lua.sh/api/v1/discounts?page=1",
+            "label": "1",
+            "active": true
+          },
+          {
+            "url": null,
+            "label": "Next",
+            "active": false
+          }
+        ],
+        "path": "https://lua.sh/api/v1/discounts",
+        "per_page": 25,
+        "to": 1,
+        "total": 1
+      }
+    }
+    ```
+
+  </Col>
+</Row>

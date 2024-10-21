@@ -1,0 +1,36 @@
+import { Guides } from '@/components/Guides'
+import { Resources } from '@/components/Resources'
+import { HeroPattern } from '@/components/HeroPattern'
+
+export const metadata = {
+  title: 'Lua.sh Docs',
+  description:
+    'Learn everything you need to know about the Mercantive API and seamlessly integrate Mercantive into your product.',
+}
+
+
+
+<HeroPattern />
+
+# Mercantive Developers
+
+Use the Mercantive API to access stores, products, sales, and more, and seamlessly integrate your product into the workflows of thousands of passionate Mercantive users. {{ className: 'lead' }}
+
+<div className="not-prose mb-16 mt-6 flex gap-3">
+  <Button href="/authentication" arrow="right">
+    <>Quickstart</>
+  </Button>
+</div>
+
+## Getting started {{ anchor: false }}
+
+To get started, obtain your API key, then learn how to make requests for the resources you need using our HTTP APIs. Once your integration is ready, you can start using it to enhance your Mercantive experience. {{ className: 'lead' }}
+
+<div className="not-prose">
+  <Button href="https://app.mercantive.com/settings/api" target="_blank" variant="text" arrow="right">
+    <>Get your API key</>
+  </Button>
+</div>
+
+<Guides />
+<Resources />

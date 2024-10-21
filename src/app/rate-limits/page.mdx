@@ -1,0 +1,16 @@
+export const metadata = {
+  title: 'Licenses',
+  description:
+    'On this page, we’ll dive into the different contact endpoints you can use to manage contacts programmatically.',
+}
+
+# Rate Limits
+
+To help you monitor whether your application is being rate-limited or nearing that threshold, we include the following HTTP headers in our successful responses:
+
+- `X-Ratelimit-Limit`: The maximum number of API calls allowed per minute.
+- `X-Ratelimit-Remaining`: The number of API calls remaining in the current time window.
+
+The limit is set at 60 API calls per minute.
+
+If this limit is exceeded, you will receive a `429 Too Many Requests` response.
