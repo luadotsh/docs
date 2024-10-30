@@ -4,7 +4,8 @@ import clsx from 'clsx'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
 import { Button } from '@/components/Button'
-import { Logo } from '@/components/Logo'
+import { LogoBlack } from '@/components/LogoBlack'
+import { LogoWhite } from '@/components/LogoWhite'
 import {
   MobileNavigation,
   useIsInsideMobileNavigation,
@@ -63,7 +64,8 @@ export const Header = forwardRef(function Header({ className, ...props }, ref) {
       <div className="flex items-center gap-5 lg:hidden">
         <MobileNavigation />
         <Link href="/" aria-label="Home">
-          <Logo className="h-8" />
+          <LogoBlack className="h-8 block dark:hidden" />
+          <LogoWhite className="h-8 hidden dark:block" />
         </Link>
       </div>
       <div className="flex items-center gap-5">
