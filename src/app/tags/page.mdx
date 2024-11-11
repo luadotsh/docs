@@ -1,10 +1,10 @@
 export const metadata = {
-  title: 'Links',
+  title: 'Tags',
   description:
     'Manage your links and track clicks with the Mercantive API.',
 }
 
-# Links
+# Tags
 The LicenseKey is a unique identifier that grants access to a digital product. Each license key is typically provided to a user, allowing them to activate and use the product. License keys are commonly used to manage permissions, track individual activations, and control how a product can be accessed.
 
 ## The object
@@ -14,49 +14,13 @@ The LicenseKey object represents the data structure for each license key within 
   <Property name="id" type="uuid">
     Unique identifier for the license.
   </Property>
-  <Property name="workspace_id" type="uuid">
-    Unique identifier for the license.
-  </Property>
-  <Property name="domain" type="string">
+  <Property name="workspace_id" type="string">
     The identifier for the License, Example: `Macbook Pro`.
   </Property>
-  <Property name="key" type="string">
+  <Property name="name" type="string">
     The identifier for the License, Example: `Macbook Pro`.
   </Property>
-  <Property name="url" type="string">
-    The identifier for the License, Example: `Macbook Pro`.
-  </Property>
-  <Property name="link" type="string">
-    The identifier for the License, Example: `Macbook Pro`.
-  </Property>
-  <Property name="utm_source" type="string">
-    The identifier for the License, Example: `Macbook Pro`.
-  </Property>
-  <Property name="utm_medium" type="string">
-    The identifier for the License, Example: `Macbook Pro`.
-  </Property>
-  <Property name="utm_campaign" type="string">
-    The identifier for the License, Example: `Macbook Pro`.
-  </Property>
-  <Property name="utm_term" type="string">
-    The identifier for the License, Example: `Macbook Pro`.
-  </Property>
-  <Property name="utm_content" type="string">
-    The identifier for the License, Example: `Macbook Pro`.
-  </Property>
-  <Property name="utm_name" type="string">
-    The identifier for the License, Example: `Macbook Pro`.
-  </Property>
-  <Property name="clicks" type="integer">
-    The identifier for the License, Example: `Macbook Pro`.
-  </Property>
-  <Property name="last_click" type="integer">
-    The identifier for the License, Example: `Macbook Pro`.
-  </Property>
-  <Property name="external_id" type="integer">
-    The identifier for the License, Example: `Macbook Pro`.
-  </Property>
-  <Property name="password" type="integer">
+  <Property name="color" type="string">
     The identifier for the License, Example: `Macbook Pro`.
   </Property>
   <Property name="created_at" type="timestamp">
@@ -69,7 +33,7 @@ The LicenseKey object represents the data structure for each license key within 
 
 ---
 
-## List {{ tag: 'GET', label: '/links' }}
+## List {{ tag: 'GET', label: '/tags' }}
 
 <Row>
   <Col>
@@ -77,10 +41,10 @@ The LicenseKey object represents the data structure for each license key within 
   </Col>
   <Col sticky>
 
-    <CodeGroup title="Request" tag="GET" label="/links">
+    <CodeGroup title="Request" tag="GET" label="/tags">
 
     ```bash {{ title: 'cURL' }}
-    curl -X GET https://lua.sh/api/v1/links \
+    curl -X GET https://lua.sh/api/v1/tags \
       -H "Authorization: Bearer {token}" \
       -H "Content-Type: application/json"
     ```
@@ -111,7 +75,7 @@ The LicenseKey object represents the data structure for each license key within 
 
 ---
 
-## Create {{ tag: 'POST', label: '/links' }}
+## Create {{ tag: 'POST', label: '/tags' }}
 
 <Row>
   <Col>
@@ -129,13 +93,13 @@ The LicenseKey object represents the data structure for each license key within 
   </Col>
   <Col sticky>
 
-    <CodeGroup title="Request" tag="POST" label="/links">
+    <CodeGroup title="Request" tag="POST" label="/tags">
 
     ```bash {{ title: 'cURL' }}
-    curl -X POST https://lua.sh/api/v1/links \
+    curl -X POST https://lua.sh/api/v1/tags \
       -H "Authorization: Bearer {token}" \
       -H "Content-Type: application/json" \
-      -d name="Macbook Pro"
+      -d name="Products"
     ```
     </CodeGroup>
 
@@ -166,7 +130,7 @@ The LicenseKey object represents the data structure for each license key within 
 
 ---
 
-## Update {{ tag: 'PUT', label: '/links/{id}' }}
+## Update {{ tag: 'PUT', label: '/tags/{id}' }}
 
 <Row>
   <Col>
@@ -182,7 +146,7 @@ The LicenseKey object represents the data structure for each license key within 
   </Col>
   <Col sticky>
 
-    <CodeGroup title="Request" tag="PUT" label="/links/{id}">
+    <CodeGroup title="Request" tag="PUT" label="/tags/{id}">
 
     ```bash {{ title: 'cURL' }}
     curl -X PUT https://lua.sh/api/v1/links/{id} \
@@ -218,111 +182,7 @@ The LicenseKey object represents the data structure for each license key within 
 
 ---
 
-## Show {{ tag: 'GET', label: '/links/{id}' }}
-
-<Row>
-  <Col>
-    This endpoint enables you to verify if a license key is valid, active, and authorized to access a specific product or service.
-
-    ### Required attributes
-
-    <Properties>
-      <Property name="key" type="uuid">
-        The unique identifier for the license key.
-      </Property>
-    </Properties>
-  </Col>
-  <Col sticky>
-
-    <CodeGroup title="Request" tag="PUT" label="/links/{id}">
-
-    ```bash {{ title: 'cURL' }}
-    curl -X PUT https://lua.sh/api/v1/links/{id} \
-      -H "Authorization: Bearer {token}" \
-      -H "Content-Type: application/json" \
-      -d key="9d1eb6d6-163d-49c2-baf9-6c837bdce229"
-    ```
-
-    </CodeGroup>
-    ```json {{ title: 'Response' }}
-    {
-      "license": {
-        "id": "9d1cf32d-1dc3-4f9e-91a2-ba840f0821dc",
-        "activation_limit": 5,
-        "expires_at": "2025-09-27T22:37:24.000000Z",
-        "suspended_at": null,
-        "status": "ACTIVE",
-        "activation_usage": 3,
-        "activation_usage_formatted": "3/5",
-        "created_at": "2024-09-27T22:37:24.000000Z",
-        "updated_at": "2024-09-27T22:37:24.000000Z"
-      },
-      "key": {
-        "id": "9d1cf8ef-3337-4059-b88b-505db1bdc52b",
-        "name": "Macbook Pro",
-        "created_at": "2024-09-27T22:53:30.000000Z",
-        "updated_at": "2024-09-27T22:53:30.000000Z"
-      }
-    }
-    ```
-  </Col>
-</Row>
-
----
-
-## Qr code {{ tag: 'GET', label: '/links/{id}/qr-code' }}
-
-<Row>
-  <Col>
-    This endpoint enables you to verify if a license key is valid, active, and authorized to access a specific product or service.
-
-    ### Required attributes
-
-    <Properties>
-      <Property name="id" type="uuid">
-        The link ID
-      </Property>
-    </Properties>
-  </Col>
-  <Col sticky>
-
-    <CodeGroup title="Request" tag="GET" label="/links/{id}/qr-code">
-
-    ```bash {{ title: 'cURL' }}
-    curl -X PUT https://lua.sh/api/v1/links/{id}/qr-code \
-      -H "Authorization: Bearer {token}" \
-      -H "Content-Type: application/json" \
-      -d key="9d1eb6d6-163d-49c2-baf9-6c837bdce229"
-    ```
-
-    </CodeGroup>
-    ```json {{ title: 'Response' }}
-    {
-      "license": {
-        "id": "9d1cf32d-1dc3-4f9e-91a2-ba840f0821dc",
-        "activation_limit": 5,
-        "expires_at": "2025-09-27T22:37:24.000000Z",
-        "suspended_at": null,
-        "status": "ACTIVE",
-        "activation_usage": 3,
-        "activation_usage_formatted": "3/5",
-        "created_at": "2024-09-27T22:37:24.000000Z",
-        "updated_at": "2024-09-27T22:37:24.000000Z"
-      },
-      "key": {
-        "id": "9d1cf8ef-3337-4059-b88b-505db1bdc52b",
-        "name": "Macbook Pro",
-        "created_at": "2024-09-27T22:53:30.000000Z",
-        "updated_at": "2024-09-27T22:53:30.000000Z"
-      }
-    }
-    ```
-  </Col>
-</Row>
-
----
-
-## Delete {{ tag: 'DELETE', label: '/links/{id}' }}
+## Delete {{ tag: 'DELETE', label: '/tags/{id}' }}
 
 <Row>
   <Col>
@@ -338,7 +198,7 @@ The LicenseKey object represents the data structure for each license key within 
   </Col>
   <Col sticky>
 
-    <CodeGroup title="Request" tag="DELETE" label="/links/{id}">
+    <CodeGroup title="Request" tag="DELETE" label="/tags/{id}">
 
     ```bash {{ title: 'cURL' }}
     curl -X DELETE https://lua.sh/api/v1/licenses/{id}/deactivate \

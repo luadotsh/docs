@@ -209,11 +209,8 @@ export const navigation = [
     title: 'Resources',
     links: [
       { title: 'Links', href: '/links' },
-      // { title: 'License Keys', href: '/license-keys' },
-      // { title: 'Discounts', href: '/discounts' },
-      // { title: 'Products', href: '/products' },
-      // { title: 'Product Variants', href: '/product-variants' },
-      // { title: 'Stores', href: '/stores' },
+      { title: 'Domains', href: '/domains' },
+      { title: 'Tags', href: '/tags' },
     ],
   },
 ]
