@@ -206,11 +206,18 @@ export const navigation = [
     ],
   },
   {
-    title: 'Resources',
+    title: 'Endpoints',
     links: [
       { title: 'Links', href: '/links' },
       { title: 'Domains', href: '/domains' },
       { title: 'Tags', href: '/tags' },
+    ],
+  },
+  {
+    title: 'Hosting',
+    links: [
+      { title: 'Self-Hosting', href: '/self-hosting' },
+      { title: 'Local Development', href: '/local-development' },
     ],
   },
 ]
