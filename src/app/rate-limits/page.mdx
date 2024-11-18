@@ -1,5 +1,5 @@
 export const metadata = {
-  title: 'Licenses',
+  title: 'Rate Limits',
   description:
     'On this page, we’ll dive into the different contact endpoints you can use to manage contacts programmatically.',
 }
@@ -11,6 +11,13 @@ To help you monitor whether your application is being rate-limited or nearing th
 - `X-Ratelimit-Limit`: The maximum number of API calls allowed per minute.
 - `X-Ratelimit-Remaining`: The number of API calls remaining in the current time window.
 
-The limit is set at 60 API calls per minute.
+The rate limit will depends on your plan:
+
+- **Free Plan**: 60 requests per minute.
+- **Starter Plan**: 120 requests per minute.
+- **Pro Plan**: 200 requests per minute.
+- **Growth Plan**: 400 requests per minute.
+- **Scale Plan**: 1,000 requests per minute.
+
 
 If this limit is exceeded, you will receive a `429 Too Many Requests` response.

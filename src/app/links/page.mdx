@@ -1,69 +1,69 @@
 export const metadata = {
   title: 'Links',
   description:
-    'Manage your links and track clicks with the Mercantive API.',
+    'The link API allows you to create, update, and delete links, as well as retrieve QR codes for them.',
 }
 
 # Links
-The LicenseKey is a unique identifier that grants access to a digital product. Each license key is typically provided to a user, allowing them to activate and use the product. License keys are commonly used to manage permissions, track individual activations, and control how a product can be accessed.
+The link API allows you to create, update, and delete links, as well as retrieve QR codes for them.
 
 ## The object
-The LicenseKey object represents the data structure for each license key within Mercantive. It includes information such as activation status, associated license, and usage details. The license key object allows you to monitor activations, enforce limits, and manage access to your products on a per-key basis, providing fine-grained control and visibility over product distribution.
+The link object has the following attributes:
 
 <Properties>
   <Property name="id" type="uuid">
-    Unique identifier for the license.
+    The link id.
   </Property>
   <Property name="workspace_id" type="uuid">
-    Unique identifier for the license.
+    The workspace where link is associated.
   </Property>
   <Property name="domain" type="string">
-    The identifier for the License, Example: `Macbook Pro`.
+    The domain for the link, Example: `git.now`.
   </Property>
   <Property name="key" type="string">
-    The identifier for the License, Example: `Macbook Pro`.
+    The key for the link, Example: `paulocastellano`.
   </Property>
   <Property name="url" type="string">
-    The identifier for the License, Example: `Macbook Pro`.
+    The URL for the link, Example: `git.now/paulocastellano`.
   </Property>
   <Property name="link" type="string">
-    The identifier for the License, Example: `Macbook Pro`.
+    The full link, Example: `https://git.now/paulocastellano`.
   </Property>
   <Property name="utm_source" type="string">
-    The identifier for the License, Example: `Macbook Pro`.
+    The utm source for the link, Example: `facebook`.
   </Property>
   <Property name="utm_medium" type="string">
-    The identifier for the License, Example: `Macbook Pro`.
+    The utm medium for the link, Example: `social`.
   </Property>
   <Property name="utm_campaign" type="string">
-    The identifier for the License, Example: `Macbook Pro`.
+    The utm campaign for the link, Example: `black-friday`.
   </Property>
   <Property name="utm_term" type="string">
-    The identifier for the License, Example: `Macbook Pro`.
+    The utm term for the link, Example: `macbook-pro`.
   </Property>
   <Property name="utm_content" type="string">
-    The identifier for the License, Example: `Macbook Pro`.
+    The utm content for the link, Example: `creative-one`.
   </Property>
   <Property name="utm_name" type="string">
-    The identifier for the License, Example: `Macbook Pro`.
+    The utm name for the link, Example: `macbook-pro-creative-one`.
   </Property>
   <Property name="clicks" type="integer">
-    The identifier for the License, Example: `Macbook Pro`.
+    The number of clicks for the link.
   </Property>
   <Property name="last_click" type="integer">
-    The identifier for the License, Example: `Macbook Pro`.
+    The last click for the link.
   </Property>
   <Property name="external_id" type="integer">
-    The identifier for the License, Example: `Macbook Pro`.
+    The external_id for the link, it can be used to identify the link in an external system.
   </Property>
   <Property name="password" type="integer">
-    The identifier for the License, Example: `Macbook Pro`.
+    If the link is password protected, the encrypted password will be stored here.
   </Property>
   <Property name="created_at" type="timestamp">
-    Timestamp of when the license was created.
+    Timestamp of when the link was created.
   </Property>
   <Property name="updated_at" type="timestamp">
-    Timestamp of when the license was last updated.
+    Timestamp of when the link was last updated.
   </Property>
 </Properties>
 
@@ -73,7 +73,7 @@ The LicenseKey object represents the data structure for each license key within 
 
 <Row>
   <Col>
-    This enpoint allows you to get all the keys for a license.
+    This enpoint allows you to get a list paginated of links associated with the workspace.
   </Col>
   <Col sticky>
 
@@ -91,21 +91,61 @@ The LicenseKey object represents the data structure for each license key within 
     {
       "data": [
         {
-          "id": "9d1cf8ef-3337-4059-b88b-505db1bdc52b",
-          "name": "Macbook Pro",
-          "created_at": "2024-09-27T22:53:30.000000Z",
-          "updated_at": "2024-09-27T22:53:30.000000Z"
-        },
-        {
-          "id": "9d1e90c3-db31-4a36-8d29-945a4061d9c9",
-          "name": "iMac",
-          "created_at": "2024-09-28T17:53:53.000000Z",
-          "updated_at": "2024-09-28T17:53:53.000000Z"
-        },
-      ]
+          "id": "9d61376a-9069-4193-941a-cd783cfc147d",
+          "workspace_id": "9d5f3cf9-fa6f-498b-b5be-bd078b7d5339",
+          "domain": "git.now",
+          "key": "paulocastellano",
+          "url": "https://github.com/paulocastellano",
+          "link": "https://git.now/paulocastellano",
+          "utm_source": null,
+          "utm_medium": null,
+          "utm_campaign": null,
+          "utm_term": null,
+          "utm_content": null,
+          "utm_name": null,
+          "clicks": 0,
+          "last_click": null,
+          "external_id": null,
+          "password": null,
+          "tags": [],
+          "created_at": "2024-10-31T21:04:31.000000Z",
+          "updated_at": "2024-10-31T21:04:31.000000Z"
+        }
+      ],
+      "links": {
+        "first": "https://lua.sh/api/v1/links?page=1",
+        "last": "https://lua.sh/api/v1/links?page=1",
+        "prev": null,
+        "next": null
+      },
+      "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "links": [
+          {
+            "url": null,
+            "label": "Previous",
+            "active": false
+          },
+          {
+            "url": "https://lua.sh/api/v1/links?page=1",
+            "label": "1",
+            "active": true
+          },
+          {
+            "url": null,
+            "label": "Next",
+            "active": false
+          }
+        ],
+        "path": "https://lua.sh/api/v1/links",
+        "per_page": 25,
+        "to": 1,
+        "total": 1
+      }
     }
-    ```
-
+  ```
   </Col>
 </Row>
 
@@ -116,16 +156,21 @@ The LicenseKey object represents the data structure for each license key within 
 <Row>
   <Col>
 
-    This endpoint allows you to activate a license key. Activation is the process of associating a license key with a specific License, enabling the user to access the product or service associated with the key. Activation typically involves validating the key, checking usage limits, and updating the key status to `ACTIVE`.
+    This endpoint allows you to create a new link.
 
-    ### Required attributes
+    ### Attributes
 
     <Properties>
-      <Property name="name" type="string">
-        The identifier for the License, Example: `Macbook Pro`.
+      <Property name="key" type="string" required>
+        The link key, Example: `paulocastellano`.
+      </Property>
+      <Property name="domain" type="string" required>
+        The domain for the link, Example: `git.now`.
+      </Property>
+      <Property name="url" type="string" required>
+        The URL for the link, Example: `https://github.com/paulocastellano`.
       </Property>
     </Properties>
-
   </Col>
   <Col sticky>
 
@@ -135,29 +180,33 @@ The LicenseKey object represents the data structure for each license key within 
     curl -X POST https://lua.sh/api/v1/links \
       -H "Authorization: Bearer {token}" \
       -H "Content-Type: application/json" \
-      -d name="Macbook Pro"
+      -d key="paulocastellano" \
+      -d domain="git.now" \
+      -d url="https://github.com/paulocastellano"
     ```
     </CodeGroup>
 
     ```json {{ title: 'Response' }}
     {
-      "license": {
-        "id": "9d1cf32d-1dc3-4f9e-91a2-ba840f0821dc",
-        "activation_limit": 5,
-        "expires_at": "2025-09-27T22:37:24.000000Z",
-        "suspended_at": null,
-        "status": "ACTIVE",
-        "activation_usage": 3,
-        "activation_usage_formatted": "3/5",
-        "created_at": "2024-09-27T22:37:24.000000Z",
-        "updated_at": "2024-09-27T22:37:24.000000Z"
-      },
-      "key": {
-        "id": "9d1eb6d6-163d-49c2-baf9-6c837bdce229",
-        "name": "Macbook",
-        "created_at": "2024-09-28T19:40:20.000000Z",
-        "updated_at": "2024-09-28T19:40:20.000000Z"
-      }
+      "id": "9d8558af-997f-4a96-88dc-a515b6c1b567",
+      "workspace_id": "9d5f3cf9-fa6f-498b-b5be-bd078b7d5339",
+      "domain": "git.now",
+      "key": "paulocastellano",
+      "url": "https://github.com/paulocastellano",
+      "link": "https://git.now/paulocastellano",
+      "utm_source": null,
+      "utm_medium": null,
+      "utm_campaign": null,
+      "utm_term": null,
+      "utm_content": null,
+      "utm_name": null,
+      "clicks": null,
+      "last_click": null,
+      "external_id": null,
+      "password": null,
+      "tags": [],
+      "created_at": "2024-11-18T20:07:21.000000Z",
+      "updated_at": "2024-11-18T20:07:21.000000Z"
     }
     ```
 
@@ -170,13 +219,18 @@ The LicenseKey object represents the data structure for each license key within 
 
 <Row>
   <Col>
-    This endpoint enables you to verify if a license key is valid, active, and authorized to access a specific product or service.
+    This endpoint enables you to update the details of a link.
 
-    ### Required attributes
-
+    ### Attributes
     <Properties>
-      <Property name="key" type="uuid">
-        The unique identifier for the license key.
+      <Property name="key" type="string" required>
+        The link key, Example: `paulocastellano`.
+      </Property>
+      <Property name="domain" type="string" required>
+        The domain for the link, Example: `git.now`.
+      </Property>
+      <Property name="url" type="string" required>
+        The URL for the link, Example: `https://github.com/paulocastellano`.
       </Property>
     </Properties>
   </Col>
@@ -188,29 +242,33 @@ The LicenseKey object represents the data structure for each license key within 
     curl -X PUT https://lua.sh/api/v1/links/{id} \
       -H "Authorization: Bearer {token}" \
       -H "Content-Type: application/json" \
-      -d key="9d1eb6d6-163d-49c2-baf9-6c837bdce229"
+      -d key="paulocastellano" \
+      -d domain="git.now" \
+      -d url="https://github.com/paulocastellano"
     ```
 
     </CodeGroup>
     ```json {{ title: 'Response' }}
     {
-      "license": {
-        "id": "9d1cf32d-1dc3-4f9e-91a2-ba840f0821dc",
-        "activation_limit": 5,
-        "expires_at": "2025-09-27T22:37:24.000000Z",
-        "suspended_at": null,
-        "status": "ACTIVE",
-        "activation_usage": 3,
-        "activation_usage_formatted": "3/5",
-        "created_at": "2024-09-27T22:37:24.000000Z",
-        "updated_at": "2024-09-27T22:37:24.000000Z"
-      },
-      "key": {
-        "id": "9d1cf8ef-3337-4059-b88b-505db1bdc52b",
-        "name": "Macbook Pro",
-        "created_at": "2024-09-27T22:53:30.000000Z",
-        "updated_at": "2024-09-27T22:53:30.000000Z"
-      }
+      "id": "9d8558af-997f-4a96-88dc-a515b6c1b567",
+      "workspace_id": "9d5f3cf9-fa6f-498b-b5be-bd078b7d5339",
+      "domain": "git.now",
+      "key": "paulocastellano",
+      "url": "https://github.com/paulocastellano",
+      "link": "https://git.now/paulocastellano",
+      "utm_source": null,
+      "utm_medium": null,
+      "utm_campaign": null,
+      "utm_term": null,
+      "utm_content": null,
+      "utm_name": null,
+      "clicks": 0,
+      "last_click": null,
+      "external_id": null,
+      "password": null,
+      "tags": [],
+      "created_at": "2024-11-18T20:07:21.000000Z",
+      "updated_at": "2024-11-18T20:11:23.000000Z"
     }
     ```
   </Col>
@@ -222,13 +280,13 @@ The LicenseKey object represents the data structure for each license key within 
 
 <Row>
   <Col>
-    This endpoint enables you to verify if a license key is valid, active, and authorized to access a specific product or service.
+    This endpoint enables you to retrieve the details of a link.
 
-    ### Required attributes
+    ### Attributes
 
     <Properties>
-      <Property name="key" type="uuid">
-        The unique identifier for the license key.
+      <Property name="id" type="uuid" required>
+        The unique identifier for the link.
       </Property>
     </Properties>
   </Col>
@@ -237,32 +295,33 @@ The LicenseKey object represents the data structure for each license key within 
     <CodeGroup title="Request" tag="PUT" label="/links/{id}">
 
     ```bash {{ title: 'cURL' }}
-    curl -X PUT https://lua.sh/api/v1/links/{id} \
+    curl -X GET https://lua.sh/api/v1/links/{id} \
       -H "Authorization: Bearer {token}" \
-      -H "Content-Type: application/json" \
-      -d key="9d1eb6d6-163d-49c2-baf9-6c837bdce229"
+      -H "Content-Type: application/json"
     ```
 
     </CodeGroup>
     ```json {{ title: 'Response' }}
     {
-      "license": {
-        "id": "9d1cf32d-1dc3-4f9e-91a2-ba840f0821dc",
-        "activation_limit": 5,
-        "expires_at": "2025-09-27T22:37:24.000000Z",
-        "suspended_at": null,
-        "status": "ACTIVE",
-        "activation_usage": 3,
-        "activation_usage_formatted": "3/5",
-        "created_at": "2024-09-27T22:37:24.000000Z",
-        "updated_at": "2024-09-27T22:37:24.000000Z"
-      },
-      "key": {
-        "id": "9d1cf8ef-3337-4059-b88b-505db1bdc52b",
-        "name": "Macbook Pro",
-        "created_at": "2024-09-27T22:53:30.000000Z",
-        "updated_at": "2024-09-27T22:53:30.000000Z"
-      }
+      "id": "9d60cc1f-953a-4ade-8c80-aaa87835afb2",
+      "workspace_id": "9d5f3cf9-fa6f-498b-b5be-bd078b7d5339",
+      "domain": "git.now",
+      "key": "paulocastellano",
+      "url": "https://github.com/paulocastellano",
+      "link": "https://git.now/paulocastellano",
+      "utm_source": null,
+      "utm_medium": null,
+      "utm_campaign": null,
+      "utm_term": null,
+      "utm_content": null,
+      "utm_name": null,
+      "clicks": 0,
+      "last_click": null,
+      "external_id": null,
+      "password": null,
+      "tags": [],
+      "created_at": "2024-10-31T16:04:30.000000Z",
+      "updated_at": "2024-10-31T16:04:30.000000Z"
     }
     ```
   </Col>
@@ -274,13 +333,19 @@ The LicenseKey object represents the data structure for each license key within 
 
 <Row>
   <Col>
-    This endpoint enables you to verify if a license key is valid, active, and authorized to access a specific product or service.
+    This endpoint enables you to retrieve the QR code for a link.
 
-    ### Required attributes
+    ### Attributes
 
     <Properties>
-      <Property name="id" type="uuid">
-        The link ID
+      <Property name="id" type="uuid" required>
+        The link id.
+      </Property>
+      <Property name="download" type="boolean">
+        By default it's false, if you want to download the QR code pass `true`.
+      </Property>
+      <Property name="color" type="string">
+        You can pass a color to the QR code, Example: `#000000`.
       </Property>
     </Properties>
   </Col>
@@ -291,31 +356,12 @@ The LicenseKey object represents the data structure for each license key within 
     ```bash {{ title: 'cURL' }}
     curl -X PUT https://lua.sh/api/v1/links/{id}/qr-code \
       -H "Authorization: Bearer {token}" \
-      -H "Content-Type: application/json" \
-      -d key="9d1eb6d6-163d-49c2-baf9-6c837bdce229"
+      -H "Content-Type: application/json"
     ```
 
     </CodeGroup>
-    ```json {{ title: 'Response' }}
-    {
-      "license": {
-        "id": "9d1cf32d-1dc3-4f9e-91a2-ba840f0821dc",
-        "activation_limit": 5,
-        "expires_at": "2025-09-27T22:37:24.000000Z",
-        "suspended_at": null,
-        "status": "ACTIVE",
-        "activation_usage": 3,
-        "activation_usage_formatted": "3/5",
-        "created_at": "2024-09-27T22:37:24.000000Z",
-        "updated_at": "2024-09-27T22:37:24.000000Z"
-      },
-      "key": {
-        "id": "9d1cf8ef-3337-4059-b88b-505db1bdc52b",
-        "name": "Macbook Pro",
-        "created_at": "2024-09-27T22:53:30.000000Z",
-        "updated_at": "2024-09-27T22:53:30.000000Z"
-      }
-    }
+    ``` {{ title: 'Response' }}
+    The response will be a PNG blob with the QR code.
     ```
   </Col>
 </Row>
@@ -326,13 +372,13 @@ The LicenseKey object represents the data structure for each license key within 
 
 <Row>
   <Col>
-    This endpoint allows you to deactivate a license key.
+    This endpoint allows you to delete a link.
 
-     ### Required attributes
+     ### Attributes
 
     <Properties>
-      <Property name="key" type="uuid">
-        The unique identifier for the license key.
+      <Property name="id" type="uuid" required>
+        The link id.
       </Property>
     </Properties>
   </Col>
@@ -341,18 +387,16 @@ The LicenseKey object represents the data structure for each license key within 
     <CodeGroup title="Request" tag="DELETE" label="/links/{id}">
 
     ```bash {{ title: 'cURL' }}
-    curl -X DELETE https://lua.sh/api/v1/licenses/{id}/deactivate \
+    curl -X DELETE https://lua.sh/api/v1/links/{id} \
       -H "Authorization: Bearer {token}" \
-      -H "Content-Type: application/json" \
-      -d key="9d1eb6d6-163d-49c2-baf9-6c837bdce229"
+      -H "Content-Type: application/json"
     ```
     </CodeGroup>
 
     ```json {{ title: 'Response' }}
     {
-      "message": "License key deactivated successfully."
+      "message": "Link deleted"
     }
     ```
-
   </Col>
 </Row>

@@ -1,19 +1,19 @@
 export const metadata = {
   title: 'Authentication',
   description:
-    'In this guide, we\'ll look at how authentication works for the Mercantive API using bearer tokens.',
+    'In this guide, we\'ll look at how authentication works for the Lua API using bearer tokens.',
 }
 
 # Authentication
 
-To access any endpoint in the Mercantive API, you need to authenticate your requests using a bearer token. This guide explains how to use bearer token authentication with our API. {{ className: 'lead' }}
+To access any endpoint in the Lua API, you need to authenticate your requests using a bearer token. This guide explains how to use bearer token authentication with our API. {{ className: 'lead' }}
 
 ## Bearer Token
 
-You can find your API token in the Mercantive [Settings &raquo; API](https://app.mercantive.com/settings/api).
+You can find your API token in the Lua [Settings &raquo; API](https://lua.sh/settings/api-tokens).
 
 To authenticate your requests, include your bearer token in the Authorization header:
 
 ```bash {{ title: 'Example request with bearer token' }}
-curl https://lua.sh/api/v1/customers \
+curl https://lua.sh/api/v1/links \
   -H "Authorization: Bearer YOUR_API_KEY"

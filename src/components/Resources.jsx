@@ -9,17 +9,17 @@ import { Heading } from '@/components/Heading'
 import { TagIcon } from '@/components/icons/TagIcon'
 
 import { ChatBubbleIcon } from '@/components/icons/ChatBubbleIcon'
-import { PackageIcon } from '@/components/icons/PackageIcon'
-import { BoltIcon } from '@/components/icons/BoltIcon'
-import { CartIcon } from '@/components/icons/CartIcon'
+import { DomainIcon } from '@/components/icons/DomainIcon'
+import { LinkIcon } from '@/components/icons/LinkIcon'
+import { QrCodeIcon } from '@/components/icons/QrCodeIcon'
 
 const resources = [
   {
-    href: '/licenses',
-    name: 'Licenses',
+    href: '/links',
+    name: 'Links',
     description:
-      'Learn about how manage your licenses, like list, active, validate, deactivate and etc.',
-    icon: BoltIcon,
+      'Learn about how manage your links, like list, create, update, delete and etc.',
+    icon: LinkIcon,
     pattern: {
       y: 16,
       squares: [
@@ -29,11 +29,11 @@ const resources = [
     },
   },
   {
-    href: '/discounts',
-    name: 'Discounts',
+    href: '/domains',
+    name: 'Domains',
     description:
-      'Learn about how manage your discounts, like list, create, update, delete and etc.',
-    icon: TagIcon,
+      'Learn about how manage your domains, like list, create, update, delete and etc.',
+    icon: DomainIcon,
     pattern: {
       y: -6,
       squares: [
@@ -43,11 +43,11 @@ const resources = [
     },
   },
   {
-    href: '/products',
-    name: 'Products',
+    href: '/tags',
+    name: 'Tags',
     description:
-      'Learn about how manage your products, like list, create, update, delete and etc.',
-    icon: PackageIcon,
+      'Learn about how manage your tags, like list, create, update, delete and etc.',
+    icon: TagIcon,
     pattern: {
       y: 32,
       squares: [
@@ -57,11 +57,11 @@ const resources = [
     },
   },
   {
-    href: '/stores',
-    name: 'Stores',
+    href: '/links#qr-code',
+    name: 'QR Codes',
     description:
-      'Everything on mercantive it\'s scoped on your store like products, sales, subscriptions, customers and etc.',
-    icon: CartIcon,
+      'Learn about how generate QR Codes for your links.',
+    icon: QrCodeIcon,
     pattern: {
       y: 22,
       squares: [[0, 1]],

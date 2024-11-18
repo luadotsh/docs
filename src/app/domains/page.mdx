@@ -1,24 +1,24 @@
 export const metadata = {
   title: 'Domains',
   description:
-    'Manage your links and track clicks with the Mercantive API.',
+    'Manage your domains and redirect users to the right place when they access your domain.',
 }
 
 # Domains
-The LicenseKey is a unique identifier that grants access to a digital product. Each license key is typically provided to a user, allowing them to activate and use the product. License keys are commonly used to manage permissions, track individual activations, and control how a product can be accessed.
+The Domains API allows you to manage your domains and redirect users to the right place when they access your domain.
 
 ## The object
-The LicenseKey object represents the data structure for each license key within Mercantive. It includes information such as activation status, associated license, and usage details. The license key object allows you to monitor activations, enforce limits, and manage access to your products on a per-key basis, providing fine-grained control and visibility over product distribution.
+The domain object has the following attributes:
 
 <Properties>
   <Property name="id" type="uuid">
-    Unique identifier for the license.
+    The unique domain id.
   </Property>
   <Property name="workspace_id" type="uuid">
-    The identifier for the License, Example: `Macbook Pro`.
+    The workspace id where the domain is associated.
   </Property>
   <Property name="domain" type="string">
-    The identifier for the License, Example: `Macbook Pro`.
+    The domain tld, like `go.mercantive.com`.
   </Property>
   <Property name="status" type="eum">
     The domain dns status, can be `pending` or `active`;
@@ -30,10 +30,10 @@ The LicenseKey object represents the data structure for each license key within 
     The url where user will be redirect when any link associated at this domain expires.
   </Property>
   <Property name="created_at" type="timestamp">
-    Timestamp of when the license was created.
+    Timestamp of when the domain was created.
   </Property>
   <Property name="updated_at" type="timestamp">
-    Timestamp of when the license was last updated.
+    Timestamp of when the domain was last updated.
   </Property>
 </Properties>
 
@@ -43,7 +43,13 @@ The LicenseKey object represents the data structure for each license key within 
 
 <Row>
   <Col>
-    This enpoint allows you to get all the keys for a license.
+    This enpoint allows you to get a list paginated of all domains associated with your workspace.
+
+    <Properties>
+      <Property name="page" type="integer">
+        The pagination page number.
+      </Property>
+    </Properties>
   </Col>
   <Col sticky>
 
@@ -52,7 +58,8 @@ The LicenseKey object represents the data structure for each license key within 
     ```bash {{ title: 'cURL' }}
     curl -X GET https://lua.sh/api/v1/domains \
       -H "Authorization: Bearer {token}" \
-      -H "Content-Type: application/json"
+      -H "Content-Type: application/json" \
+      -d page=1
     ```
 
     </CodeGroup>
@@ -61,21 +68,60 @@ The LicenseKey object represents the data structure for each license key within 
     {
       "data": [
         {
-          "id": "9d1cf8ef-3337-4059-b88b-505db1bdc52b",
-          "name": "Macbook Pro",
-          "created_at": "2024-09-27T22:53:30.000000Z",
-          "updated_at": "2024-09-27T22:53:30.000000Z"
+          "id": "9d5f620d-9b7a-4c25-9e75-3c0615c5e13c",
+          "workspace_id": "9d5f3cf9-fa6f-498b-b5be-bd078b7d5339",
+          "domain": "go.mercantive.com",
+          "status": "active",
+          "not_found_url": null,
+          "expired_url": null,
+          "created_at": "2024-10-30T23:12:05.000000Z",
+          "updated_at": "2024-10-30T23:12:05.000000Z"
         },
         {
-          "id": "9d1e90c3-db31-4a36-8d29-945a4061d9c9",
-          "name": "iMac",
-          "created_at": "2024-09-28T17:53:53.000000Z",
-          "updated_at": "2024-09-28T17:53:53.000000Z"
+          "id": "8c6f620d-9b7a-4c25-9e75-3c0615c5e12f",
+          "workspace_id": "9d5f3cf9-fa6f-498b-b5be-bd078b7d5339",
+          "domain": "go.changelogfy.com",
+          "status": "active",
+          "not_found_url": null,
+          "expired_url": null,
+          "created_at": "2024-10-30T23:12:05.000000Z",
+          "updated_at": "2024-10-30T23:12:05.000000Z"
         },
-      ]
+      ],
+      "links": {
+        "first": "https://lua.sh/api/v1/domains?page=1",
+        "last": "https://lua.sh/api/v1/domains?page=1",
+        "prev": null,
+        "next": null
+      },
+      "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "links": [
+          {
+            "url": null,
+            "label": "Previous",
+            "active": false
+          },
+          {
+            "url": "https://lua.sh/api/v1/domains?page=1",
+            "label": "1",
+            "active": true
+          },
+          {
+            "url": null,
+            "label": "Next",
+            "active": false
+          }
+        ],
+        "path": "https://lua.sh/api/v1/domains",
+        "per_page": 25,
+        "to": 2,
+        "total": 2
+      }
     }
     ```
-
   </Col>
 </Row>
 
@@ -86,13 +132,19 @@ The LicenseKey object represents the data structure for each license key within 
 <Row>
   <Col>
 
-    This endpoint allows you to activate a license key. Activation is the process of associating a license key with a specific License, enabling the user to access the product or service associated with the key. Activation typically involves validating the key, checking usage limits, and updating the key status to `ACTIVE`.
+    This endpoint allows you to create a new domain associated with your workspace.
 
-    ### Required attributes
+    ### Attributes
 
     <Properties>
-      <Property name="name" type="string">
-        The identifier for the License, Example: `Macbook Pro`.
+      <Property name="domain" type="string" required>
+        The domain tld that you want add to your workspace, like `go.mercantive.com`.
+      </Property>
+      <Property name="not_found_url" type="string">
+        The url where user will be redirect when any link associated at this domain it's removed on where user access the root domain. e.g. `https://mercantive.com`.
+      </Property>
+      <Property name="expired_url" type="string">
+        The url where user will be redirect when any link associated at this domain expires. e.g. `https://mercantive.com`.
       </Property>
     </Properties>
 
@@ -105,29 +157,22 @@ The LicenseKey object represents the data structure for each license key within 
     curl -X POST https://lua.sh/api/v1/domains \
       -H "Authorization: Bearer {token}" \
       -H "Content-Type: application/json" \
-      -d name="Macbook Pro"
+      -d domain="go.mercantive.com" \
+      -d not_found_url="https://mercantive.com" \
+      -d expired_url="https://mercantive.com"
     ```
     </CodeGroup>
 
     ```json {{ title: 'Response' }}
     {
-      "license": {
-        "id": "9d1cf32d-1dc3-4f9e-91a2-ba840f0821dc",
-        "activation_limit": 5,
-        "expires_at": "2025-09-27T22:37:24.000000Z",
-        "suspended_at": null,
-        "status": "ACTIVE",
-        "activation_usage": 3,
-        "activation_usage_formatted": "3/5",
-        "created_at": "2024-09-27T22:37:24.000000Z",
-        "updated_at": "2024-09-27T22:37:24.000000Z"
-      },
-      "key": {
-        "id": "9d1eb6d6-163d-49c2-baf9-6c837bdce229",
-        "name": "Macbook",
-        "created_at": "2024-09-28T19:40:20.000000Z",
-        "updated_at": "2024-09-28T19:40:20.000000Z"
-      }
+      "id": "9d855dec-36d8-47bd-9837-1d0d9fd23332",
+      "workspace_id": "9d5f3cf9-fa6f-498b-b5be-bd078b7d5339",
+      "domain": "go.mercantive.com",
+      "status": "pending",
+      "not_found_url": null,
+      "expired_url": null,
+      "created_at": "2024-11-18T20:21:59.000000Z",
+      "updated_at": "2024-11-18T20:21:59.000000Z"
     }
     ```
 
@@ -140,13 +185,22 @@ The LicenseKey object represents the data structure for each license key within 
 
 <Row>
   <Col>
-    This endpoint enables you to verify if a license key is valid, active, and authorized to access a specific product or service.
+    This endpoint enables you to update a domain associated with your workspace.
 
-    ### Required attributes
+    ### Attributes
 
     <Properties>
-      <Property name="key" type="uuid">
-        The unique identifier for the license key.
+      <Property name="id" type="uuid" required>
+      The domain id.
+      </Property>
+      <Property name="domain" type="string" required>
+        The domain tld, like `go.mercantive.com`.
+      </Property>
+      <Property name="not_found_url" type="string">
+        The url where user will be redirect when any link associated at this domain it's removed on where user access the root domain. e.g. `https://mercantive.com`.
+      </Property>
+      <Property name="expired_url" type="string">
+        The url where user will be redirect when any link associated at this domain expires. e.g. `https://mercantive.com`.
       </Property>
     </Properties>
   </Col>
@@ -158,45 +212,38 @@ The LicenseKey object represents the data structure for each license key within 
     curl -X PUT https://lua.sh/api/v1/domains/{id} \
       -H "Authorization: Bearer {token}" \
       -H "Content-Type: application/json" \
-      -d key="9d1eb6d6-163d-49c2-baf9-6c837bdce229"
+      -d domain="go.mercantive.com"
     ```
 
     </CodeGroup>
     ```json {{ title: 'Response' }}
     {
-      "license": {
-        "id": "9d1cf32d-1dc3-4f9e-91a2-ba840f0821dc",
-        "activation_limit": 5,
-        "expires_at": "2025-09-27T22:37:24.000000Z",
-        "suspended_at": null,
-        "status": "ACTIVE",
-        "activation_usage": 3,
-        "activation_usage_formatted": "3/5",
-        "created_at": "2024-09-27T22:37:24.000000Z",
-        "updated_at": "2024-09-27T22:37:24.000000Z"
-      },
-      "key": {
-        "id": "9d1cf8ef-3337-4059-b88b-505db1bdc52b",
-        "name": "Macbook Pro",
-        "created_at": "2024-09-27T22:53:30.000000Z",
-        "updated_at": "2024-09-27T22:53:30.000000Z"
-      }
+      "id": "9d855dec-36d8-47bd-9837-1d0d9fd23332",
+      "workspace_id": "9d5f3cf9-fa6f-498b-b5be-bd078b7d5339",
+      "domain": "go.mercantive.com",
+      "status": "active",
+      "not_found_url": null,
+      "expired_url": null,
+      "created_at": "2024-11-18T20:21:59.000000Z",
+      "updated_at": "2024-11-18T20:21:59.000000Z"
     }
     ```
   </Col>
 </Row>
 
+---
+
 ## Delete {{ tag: 'DELETE', label: '/domains/{id}' }}
 
 <Row>
   <Col>
-    This endpoint allows you to deactivate a license key.
+    This endpoint allows you to delete a domain associated with your workspace.
 
-     ### Required attributes
+     ### Attributes
 
     <Properties>
-      <Property name="key" type="uuid">
-        The unique identifier for the license key.
+      <Property name="id" type="uuid" required>
+        The domain id.
       </Property>
     </Properties>
   </Col>
@@ -207,16 +254,14 @@ The LicenseKey object represents the data structure for each license key within 
     ```bash {{ title: 'cURL' }}
     curl -X DELETE https://lua.sh/api/v1/domains/{id} \
       -H "Authorization: Bearer {token}" \
-      -H "Content-Type: application/json" \
-      -d key="9d1eb6d6-163d-49c2-baf9-6c837bdce229"
+      -H "Content-Type: application/json"
     ```
     </CodeGroup>
 
     ```json {{ title: 'Response' }}
     {
-      "message": "Domain deleted successfully."
+      "message": "Domain deleted"
     }
     ```
-
   </Col>
 </Row>
