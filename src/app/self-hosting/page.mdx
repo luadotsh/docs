@@ -8,7 +8,7 @@ export const metadata = {
 
 Self-hosting **lua.sh** allows you to have full control over your URL shortening service, ensuring scalability, reliability, and performance. Below is a generic guideline to set up **lua.sh** while respecting the recommended minimum infrastructure.
 
-## Recommended Minimum Infrastructure
+### Recommended Minimum Infrastructure
 
 To achieve optimal performance and scalability, we recommend the following server configuration:
 
@@ -17,7 +17,9 @@ To achieve optimal performance and scalability, we recommend the following serve
 - **Redis Machine or Cluster**: Manages caching and queues to ensure smooth operations.
 - **MySQL Database Machine or Cluster**: Stores and manages your data efficiently.
 
-## Schema Overview
+The minimum recommended configuration is 1 core and 1GB RAM for each machine. However, you may need to adjust based on your traffic and performance requirements.
+
+### Schema Overview
 ```
                       User
                         |
@@ -67,30 +69,26 @@ Redis         MySQL             Redis         MySQL
   - For read-heavy workloads, set up replication with a primary database and read replicas.
   - For write-heavy workloads, consider sharding or a larger instance.
 
-## General Deployment Tips
+### General Deployment Tips
 
 1. **Environment Variables**:
-   - Ensure all machines share consistent `.env` files, particularly for database and Redis configurations.
-   - Configure the `APP_URL` to point to your load balancer or main domain.
+- Ensure all machines share consistent `.env` files, particularly for database and Redis configurations.
+- Configure the `APP_URL` to point to your load balancer or main domain.
 
 2. **Monitoring and Logging**:
-   - Enable logging on all machines to track errors and performance.
-   - Set up monitoring tools to observe resource usage (CPU, memory, disk, etc.) and application metrics.
+- Enable logging on all machines to track errors and performance.
+- Set up monitoring tools to observe resource usage (CPU, memory, disk, etc.) and application metrics.
 
 3. **Security**:
-   - Use firewalls to restrict access between servers.
-   - Enable HTTPS for all external traffic.
-   - Regularly update your application and server software.
+- Use firewalls to restrict access between servers.
+- Enable HTTPS for all external traffic.
+- Regularly update your application and server software.
 
 4. **Backups**:
-   - Regularly back up your database.
-   - If applicable, back up Redis data and application files (e.g., uploads).
+- Regularly back up your database.
+- If applicable, back up Redis data and application files (e.g., uploads).
 
 5. **Scaling**:
-   - As traffic increases, you can scale each component independently:
-     - Add more PHP machines.
-     - Scale Redis and database machines vertically or horizontally.
-
-## Final Notes
-
-This guide provides a general structure for hosting **lua.sh**. The actual implementation will depend on your specific environment, tools, and hosting provider. Focus on creating a setup that ensures redundancy, scalability, and performance while aligning with your project goals. 🚀
+- As traffic increases, you can scale each component independently:
+- Add more PHP machines.
+- Scale Redis and database machines vertically or horizontally.
