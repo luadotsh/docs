@@ -1,0 +1,54 @@
+export const metadata = {
+  title: 'Local Development',
+  description:
+    'How to setup a local development environment for Lua.',
+}
+
+# Local Development
+Run Lua on your local machine for development purposes.
+
+### Requirements
+- PHP 8.1 or later
+- Composer
+- Node.js with npm
+- MySQL
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/luadotsh/lua.git
+cd lua
+```
+
+2. Install PHP dependencies:
+```bash
+composer install
+```
+
+3. Install JavaScript dependencies:
+```bash
+npm install
+```
+
+4. Set up environment variables:
+```bash
+cp .env.example .env
+```
+
+Update your .env file with database and app settings.
+
+5. Run migrations and seed the database:
+```bash
+php artisan migrate:fresh --seed
+```
+
+6. Run the front-end build:
+```bash
+npm run dev
+```
+**💻 Running with Reverb**
+
+```bash
+php artisan reverb:start --host="0.0.0.0" --port=8080 --hostname="lua.sh.test"
+```
