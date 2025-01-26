@@ -65,6 +65,15 @@ The link object has the following attributes:
   <Property name="password" type="integer">
     If the link is password protected, the encrypted password will be stored here.
   </Property>
+  <Property name="expires_at" type="datetime">
+    The date and time when the link will expire.
+  </Property>
+  <Property name="expired_redirect_url" type="string">
+    The URL to redirect to if the link is expired.
+  </Property>
+  <Property name="tags" type="array">
+    The tags for the link.
+  </Property>
   <Property name="created_at" type="timestamp">
     Timestamp of when the link was created.
   </Property>
@@ -115,6 +124,8 @@ The link object has the following attributes:
           "last_click": null,
           "external_id": null,
           "password": null,
+          "expires_at": null,
+          "expired_redirect_url": null,
           "tags": [],
           "created_at": "2024-10-31T21:04:31.000000Z",
           "updated_at": "2024-10-31T21:04:31.000000Z"
@@ -214,6 +225,8 @@ The link object has the following attributes:
       "last_click": null,
       "external_id": null,
       "password": null,
+      "expires_at": null,
+      "expired_redirect_url": null,
       "tags": [],
       "created_at": "2024-11-18T20:07:21.000000Z",
       "updated_at": "2024-11-18T20:07:21.000000Z"
@@ -278,6 +291,8 @@ The link object has the following attributes:
       "last_click": null,
       "external_id": null,
       "password": null,
+      "expires_at": null,
+      "expired_redirect_url": null,
       "tags": [],
       "created_at": "2024-11-18T20:07:21.000000Z",
       "updated_at": "2024-11-18T20:11:23.000000Z"
@@ -333,6 +348,8 @@ The link object has the following attributes:
       "last_click": null,
       "external_id": null,
       "password": null,
+      "expires_at": null,
+      "expired_redirect_url": null,
       "tags": [],
       "created_at": "2024-10-31T16:04:30.000000Z",
       "updated_at": "2024-10-31T16:04:30.000000Z"
