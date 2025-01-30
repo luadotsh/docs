@@ -7,48 +7,94 @@ export const metadata = {
 # Local Development
 Run Lua on your local machine for development purposes.
 
-### Requirements
+## Requirements
 - PHP 8.1 or later
 - Composer
 - Node.js with npm
 - MySQL
 
-### Installation
+If you prefer working with Docker instead of installing PHP and MySQL locally, you can use [Laravel Sail](https://laravel.com/docs/11.x/sail).
 
-1. Clone the repository:
+---
+
+## Installation
+
+### 1. Clone the repository
 ```bash
 git clone https://github.com/luadotsh/lua.git
 cd lua
 ```
 
-2. Install PHP dependencies:
+### 2. Install dependencies
+Choose one of the following methods:
+
+#### Option 1: Without Sail (Local PHP Installation)
 ```bash
 composer install
 ```
 
-3. Install JavaScript dependencies:
+#### Option 2: With Sail (Docker)
 ```bash
-npm install
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v $(pwd):/var/www/html \
+    -w /var/www/html \
+    laravelsail/php82-composer:latest \
+    composer install --ignore-platform-reqs
+```
+Then, start the project:
+```bash
+vendor/bin/sail up -d
 ```
 
-4. Set up environment variables:
+---
+
+## 3. Set up environment variables
 ```bash
 cp .env.example .env
 ```
+Update your `.env` file with database and app settings.
 
-Update your .env file with database and app settings.
+---
 
-5. Run migrations and seed the database:
+## 4. Run migrations and seed the database
 ```bash
 php artisan migrate:fresh --seed
 ```
+> **🛠️ Using Sail?**  
+> If you're running Laravel with Sail, prefix commands with `sail`, like this:
+> ```bash
+> vendor/bin/sail artisan migrate:fresh --seed
+> ```
 
-6. Run the front-end build:
+---
+
+## 5. Run the front-end build
 ```bash
+npm install
 npm run dev
 ```
-**💻 Running with Reverb**
 
+---
+
+## 6. Running with Reverb
 ```bash
 php artisan reverb:start --host="0.0.0.0" --port=8080 --hostname="lua.sh.test"
 ```
+> **Using Sail?** Run:  
+> ```bash
+> vendor/bin/sail artisan reverb:start --host="0.0.0.0" --port=8080 --hostname="lua.sh.test"
+> ```
+
+---
+
+## Summary of Running Commands with Sail
+Once Sail is running (`vendor/bin/sail up -d`), use it for all Laravel commands:
+```bash
+vendor/bin/sail artisan {command}
+```
+
+---
+
+This guide ensures a clear, easy-to-follow installation process for both **traditional local setups** and **Docker-based Laravel Sail environments**. 🚀
+
